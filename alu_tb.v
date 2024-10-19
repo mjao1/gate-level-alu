@@ -41,28 +41,28 @@ module alu_tb;
         sw[7:4] = 4'd3;     // B = 3
         sw[11:8] = 4'd0;    // Op = 0 (Addition)
         #10;
-        $display("Addition: %d + %d = %d, Carry Out: %b", sw[3:0], sw[7:4], led[3:0], led[4]);
+        $display("Addition: %d + %d = %d, Carry Out: %d", sw[3:0], sw[7:4], led[3:0], led[4]);
 
         // Test Case 1: Subtraction (3 - 5)
         sw[3:0] = 4'd3;     // A = 3
         sw[7:4] = 4'd5;     // B = 5
         sw[11:8] = 4'd1;    // Op = 1 (Subtraction)
         #10;
-        $display("Subtraction: %d - %d = %d, Carry Out: %b", sw[3:0], sw[7:4], $signed({led[4], led[3:0]}), led[4]);
+        $display("Subtraction: %d - %d = %d (Two's complement), Carry Out: %d", sw[3:0], sw[7:4], $signed({led[4], led[3:0]}), led[4]);
 
         // Test Case 2: Multiplication (7 * 3)
         sw[3:0] = 4'd7;     // A = 7
         sw[7:4] = 4'd3;     // B = 3
         sw[11:8] = 4'd2;   // Op = 2 (Multiplication)
         #10;
-        $display("Multiplication: %d * %d = %d, Carry Out: %b", sw[3:0], sw[7:4], led[3:0], led[4]);
+        $display("Multiplication: %d * %d = %d, Carry Out: %d", sw[3:0], sw[7:4], led[3:0], led[4]);
         
         // Test Case 3: Division (6 / 2)
         sw[3:0] = 4'd6;     // A = 6
         sw[7:4] = 4'd2;     // B = 2
         sw[11:8] = 4'd3;   // Op = 3 (Division)
         #10;
-        $display("Division: %d / %d = %d, Carry Out: %b", sw[3:0], sw[7:4], led[3:0], led[4]);
+        $display("Division: %d / %d = %d, Carry Out: %d", sw[3:0], sw[7:4], led[3:0], led[4]);
 
         // Test Case 4: Bitwise AND (10 & 10)
         sw[3:0] = 4'd10;     // A = 10
