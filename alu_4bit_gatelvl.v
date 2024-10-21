@@ -1,22 +1,20 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Engineer: Michael Jao
 // 
 // Create Date: 10/10/2024 12:20:09 PM
-// Design Name: 
+// Design Name: 4-bit ALU (gate level)
 // Module Name: alu_gatelvl
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+// Project Name: 4-bit ALU implemented on Basys 3 Artix-7 FPGA
+// Target Devices: xc7a35tcpg236-1
+// Tool Versions: Vivado 2024.1 
+// Description: A 4-bit Arithmetic Logic Unit (ALU) built at gate level abstraction. 
+//              The 4-bit ALU is developed and implemented using Verilog in Xilinx Vivado, 
+//              deploying it on the Basys 3 Artix-7 FPGA. The ALU features 16 arithmetic 
+//              and logic operation selections and accepts two 4-bit inputs from switches 
+//              0-7 and a 4-bit operation selector from switches 8-11 on the Basys 3. The 
+//              results are outputted via onboard LEDs as a binary representation.
+//
 //////////////////////////////////////////////////////////////////////////////////
 
 
