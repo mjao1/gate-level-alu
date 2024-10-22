@@ -22,12 +22,10 @@ module alu_gatelvl(
     output [7:0] led   // LEDs including carry out
     );
 
-    // Extract operands and operation code from switches
     wire [3:0] A = sw[3:0];      
     wire [3:0] B = sw[7:4];      
     wire [3:0] Op = sw[11:8];    
 
-    // Define wires for results of each operation (expanded to 8 bits)
     wire [7:0] result0;  // Addition
     wire [7:0] result1;  // Subtraction
     wire [7:0] result2;  // Multiplication
@@ -184,11 +182,9 @@ module alu_gatelvl(
     full_adder fa_inc3 (.a(A[3]), .b(1'b0), .cin(c2_inc), .sum(inc[3]), .cout(c3_inc));
     assign result15 = {3'b000, c3_inc, inc};  // Pad upper bits with zeros
 
-    // Multiplexer to select final result based on Op
     wire [15:0] sel;
     decoder4to16 dec (.in(Op), .out(sel));
 
-    // Generate final output by combining results
     genvar i;
     generate
         for (i = 0; i < 8; i = i + 1) begin : result_mux
@@ -315,7 +311,6 @@ module divider(
     // Implementing division using subtractors and comparators
     // Quotient is calculated by subtracting B from A as many times as possible
 
-    // Initialize variables
     wire [3:0] rem0 = A;
     wire [3:0] rem1, rem2, rem3, rem4;
     wire borrow1, borrow2, borrow3, borrow4;
