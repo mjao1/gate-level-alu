@@ -18,7 +18,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module alu_gatelvl(
-    input [15:0] sw,   // Switches
+    input [11:0] sw,   // Switches
     output [7:0] led   // LEDs including carry out
     );
 
