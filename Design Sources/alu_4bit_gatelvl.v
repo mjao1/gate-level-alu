@@ -136,16 +136,16 @@ module alu_gatelvl(
     wire [3:0] A_shift3 = {A[0], 3'b000};    // Shift by 3
     wire [3:0] shift_out;
     // Multiplexers for shifting
-    mux4_1 mux_shift3 (.d0(A_shift0[3]), .d1(A_shift1[3]), .d2(A_shift2[3]), .d3(A_shift3[3]), .sel(shift_amt), .y(shift_out[3]));
-    mux4_1 mux_shift2 (.d0(A_shift0[2]), .d1(A_shift1[2]), .d2(A_shift2[2]), .d3(A_shift3[2]), .sel(shift_amt), .y(shift_out[2]));
-    mux4_1 mux_shift1 (.d0(A_shift0[1]), .d1(A_shift1[1]), .d2(A_shift2[1]), .d3(A_shift3[1]), .sel(shift_amt), .y(shift_out[1]));
-    mux4_1 mux_shift0 (.d0(A_shift0[0]), .d1(A_shift1[0]), .d2(A_shift2[0]), .d3(A_shift3[0]), .sel(shift_amt), .y(shift_out[0]));
+    mux_4to1 mux_shift3 (.d0(A_shift0[3]), .d1(A_shift1[3]), .d2(A_shift2[3]), .d3(A_shift3[3]), .sel(shift_amt), .y(shift_out[3]));
+    mux_4to1 mux_shift2 (.d0(A_shift0[2]), .d1(A_shift1[2]), .d2(A_shift2[2]), .d3(A_shift3[2]), .sel(shift_amt), .y(shift_out[2]));
+    mux_4to1 mux_shift1 (.d0(A_shift0[1]), .d1(A_shift1[1]), .d2(A_shift2[1]), .d3(A_shift3[1]), .sel(shift_amt), .y(shift_out[1]));
+    mux_4to1 mux_shift0 (.d0(A_shift0[0]), .d1(A_shift1[0]), .d2(A_shift2[0]), .d3(A_shift3[0]), .sel(shift_amt), .y(shift_out[0]));
     // Carry out for shift
     wire shift_co;
     wire c_shift1 = A[3];                // Shift by 1
     wire c_shift2 = A[3] | A[2];         // Shift by 2
     wire c_shift3 = A[3] | A[2] | A[1];  // Shift by 3
-    mux4_1 mux_shift_co (.d0(1'b0), .d1(c_shift1), .d2(c_shift2), .d3(c_shift3), .sel(shift_amt), .y(shift_co));
+    mux_4to1 mux_shift_co (.d0(1'b0), .d1(c_shift1), .d2(c_shift2), .d3(c_shift3), .sel(shift_amt), .y(shift_co));
     assign result10 = {3'b000, shift_co, shift_out};  // Pad upper bits with zeros
 
     // Operation 11: Right shift A by B positions
@@ -154,16 +154,16 @@ module alu_gatelvl(
     wire [3:0] A_rshift2 = {2'b00, A[3:2]};    // Shift by 2
     wire [3:0] A_rshift3 = {3'b000, A[3]};     // Shift by 3
     wire [3:0] rshift_out;
-    mux4_1 mux_rshift3 (.d0(A_rshift0[3]), .d1(A_rshift1[3]), .d2(A_rshift2[3]), .d3(A_rshift3[3]), .sel(shift_amt), .y(rshift_out[3]));
-    mux4_1 mux_rshift2 (.d0(A_rshift0[2]), .d1(A_rshift1[2]), .d2(A_rshift2[2]), .d3(A_rshift3[2]), .sel(shift_amt), .y(rshift_out[2]));
-    mux4_1 mux_rshift1 (.d0(A_rshift0[1]), .d1(A_rshift1[1]), .d2(A_rshift2[1]), .d3(A_rshift3[1]), .sel(shift_amt), .y(rshift_out[1]));
-    mux4_1 mux_rshift0 (.d0(A_rshift0[0]), .d1(A_rshift1[0]), .d2(A_rshift2[0]), .d3(A_rshift3[0]), .sel(shift_amt), .y(rshift_out[0]));
+    mux_4to1 mux_rshift3 (.d0(A_rshift0[3]), .d1(A_rshift1[3]), .d2(A_rshift2[3]), .d3(A_rshift3[3]), .sel(shift_amt), .y(rshift_out[3]));
+    mux_4to1 mux_rshift2 (.d0(A_rshift0[2]), .d1(A_rshift1[2]), .d2(A_rshift2[2]), .d3(A_rshift3[2]), .sel(shift_amt), .y(rshift_out[2]));
+    mux_4to1 mux_rshift1 (.d0(A_rshift0[1]), .d1(A_rshift1[1]), .d2(A_rshift2[1]), .d3(A_rshift3[1]), .sel(shift_amt), .y(rshift_out[1]));
+    mux_4to1 mux_rshift0 (.d0(A_rshift0[0]), .d1(A_rshift1[0]), .d2(A_rshift2[0]), .d3(A_rshift3[0]), .sel(shift_amt), .y(rshift_out[0]));
     // Carry out for right shift
     wire rshift_co;
     wire c_rshift1 = A[0];
     wire c_rshift2 = A[0] | A[1];
     wire c_rshift3 = A[0] | A[1] | A[2];
-    mux4_1 mux_rshift_co (.d0(1'b0), .d1(c_rshift1), .d2(c_rshift2), .d3(c_rshift3), .sel(shift_amt), .y(rshift_co));
+    mux_4to1 mux_rshift_co (.d0(1'b0), .d1(c_rshift1), .d2(c_rshift2), .d3(c_rshift3), .sel(shift_amt), .y(rshift_co));
     assign result11 = {3'b000, rshift_co, rshift_out};  // Pad upper bits with zeros
 
     // Operations 12, 13, 14: Comparisons
